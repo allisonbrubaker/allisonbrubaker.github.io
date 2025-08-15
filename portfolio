@@ -1,1 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ally's Portfolio</title>
+</head>
+<body>
 
+    <h1>Ally's Portfolio</h1>
+//Project 1//
+<div class="project">
+        <img src="dress.jpg" alt="3D Printed Dress">
+        <h2>Printed Couture: 3D Printed Dress</h2>
+        <p>This final project for my Session A Media Arts & Design class was a collaborative exploration of how fashion, coding, and digital fabrication can come together to push the boundaries of creative expression.
+
+Working with a partner, we designed a custom lace system using a code-based approach grounded in repetition, transformation, and recursion. Our goal was to generate intricate lace-like patterns that could be 3D printed and sewn directly into a dress, blending the delicate aesthetic of traditional lace with the sharp innovation of computational design.
+
+We took inspiration from Iris van Herpen’s sculptural futurism, Schiaparelli’s Fall/Winter 2025–26 collection, especially Looks 20, 22, and 30 for their precise cutouts, and the interactive, organic textures seen in Philip Beesley’s architectural work.
+
+Using tools like Blender, Adobe Illustrator, and PrusaSlicer, we iterated through multiple print trials to perfect the look and structural integrity of the lace. Eventually, we found success with a two-layer print technique, sandwiching mesh fabric between layers of filament to make the lace flexible and sewable.
+
+Once we had printed enough lace sheets, we began constructing the dress. I focused on designing and assembling the top half, while my partner worked on the bottom, and then we came together to collaborate on the midsection. The process was both technical and creative: figuring out proper sizing, shaping the cutouts, and sewing everything together in a way that blended both of our styles and strengths.
+
+This project was a meaningful intersection of art, technology, fashion, and teamwork and a hands-on experiment in using code to create something tactile, wearable, and expressive.</p>
+        <p>
+            <a href="https://www.irisvanherpen.com/collections/voltage/voltage-show">Iris van Herpen Inspiration</a> |
+            <a href="https://www.schiaparelli.com/en/haute-couture/haute-couture-fall-winter-2025-26/collection">Schiaparelli Inspiration</a>
+        </p>
+    </div>
+
+    //Project 2//
+    <div class="project">
+        <img src="graphic.jpg" alt=Adobe Illustartot Clothing Graphics" 
+<h2>Graphic Design in illustartor on Hoodies</h2>
+        <p>This project focuses on a piece I designed in Adobe Illustrator. These designs are all built from scratch using the pen tool, custom gradients, and hand-colored swatches. I focused on layering each element intentionally to bring depth, dimension, and a more lifelike quality to otherwise flat vector forms. One of the standout pieces from this series is a custom floral pattern I designed entirely in Illustrator. After experimenting with swatches and redrawing each flower and connecting line digitally, I printed the pattern onto a hoodie to turn the illustration into wearable art. It was a long process of trial and refinement selecting the right colors, balancing detail, and making sure it felt cohesive when printed on fabric. This project taught me many skills and I now continue to use it to deisn and print on more pieces.
+Overall, this project pushed me to refine my digital art techniques while also exploring how my designs could live beyond the screen, whether as standalone visuals or as part of fashion and form. </p>
+        
+    </div>
