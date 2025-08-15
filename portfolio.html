@@ -1,16 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Ally's Portfolio⭐</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ally's Portfolio⭐</title>
+<style>
+    /* Simple page styling */
+    body {
+        background-color: #fff5e6;  /* soft cream background */
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;    /* center container horizontally */
+    }
+
+    .container {
+        max-width: 500px;           /* fits iPhone screen nicely */
+        width: 100%;
+        border: 5px solid #ffc0cb;  /* soft pink border */
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: #fff5e6;  /* match page background */
+    }
+
+    h1, h2, h3 {
+        text-align: center;
+    }
+
+    p {
+        line-height: 1.5;
+    }
+
+    .project {
+        text-align: center;         /* center content in each project */
+        margin-bottom: 40px;        /* spacing between projects */
+    }
+
+    iframe, img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        margin-bottom: 15px;
+    }
+
+    /* Social buttons styling */
+    .socials {
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    .socials a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 6px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .wix { background-color: #fbe8a6; }       /* soft yellow */
+    .linkedin { background-color: #ffd6d6; }  /* soft pink */
+    .instagram { background-color: #ffe0f0; } /* lighter pink */
+
+    footer {
+        text-align: center;
+        margin-top: 40px;
+    }
+</style>
 </head>
 <body>
+<div class="container">
 
     <h1>Ally's Portfolio⭐</h1>
 
     <!-- Project 1 -->
     <div class="project">
-       <!-- YouTube Embed -->
-     <div style="text-align:center; margin-bottom: 15px;">
         <iframe width="420" height="236" 
             src="https://www.youtube.com/embed/R_NOlWvQWLQ" 
             title="3D Printed Dress Video" 
@@ -18,11 +85,9 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen>
         </iframe>
-    </div>
-
 
         <h2>Printed Couture: 3D Printed Dress</h2>
-        <p>This final project for my Session A Media Arts & Design class was a collaborative exploration of how fashion, coding, and digital fabrication can come together to push the boundaries of creative expression. Working with a partner, we designed a custom lace system using a code-based approach grounded in repetition, transformation, and recursion. Our goal was to generate intricate lace-like patterns that could be 3D printed and sewn directly into a dress, blending the delicate aesthetic of traditional lace with the sharp innovation of computational design. We took inspiration from Iris van Herpen’s sculptural futurism, Schiaparelli’s Fall/Winter 2025–26 collection, especially Looks 20, 22, and 30 for their precise cutouts, and the interactive, organic textures seen in Philip Beesley’s architectural work. Using tools like Blender, Adobe Illustrator, and PrusaSlicer, we iterated through multiple print trials to perfect the look and structural integrity of the lace. Eventually, we found success with a two-layer print technique, sandwiching mesh fabric between layers of filament to make the lace flexible and sewable. Once we had printed enough lace sheets, we began constructing the dress. I focused on designing and assembling the top half, while my partner worked on the bottom, and then we came together to collaborate on the midsection. The process was both technical and creative: figuring out proper sizing, shaping the cutouts, and sewing everything together in a way that blended both of our styles and strengths. This project was a meaningful intersection of art, technology, fashion, and teamwork and a hands-on experiment in using code to create something tactile, wearable, and expressive.</p>
+        <p>This final project for my Session A Media Arts & Design class was a collaborative exploration of how fashion, coding, and digital fabrication can come together to push the boundaries of creative expression. Working with a partner, we designed a custom lace system using a code-based approach grounded in repetition, transformation, and recursion. Our goal was to generate intricate lace-like patterns that could be 3D printed and sewn directly into a dress, blending the delicate aesthetic of traditional lace with the sharp innovation of computational design.</p>
         <p>
             <a href="https://www.irisvanherpen.com/collections/voltage/voltage-show">Iris van Herpen Inspiration</a> |
             <a href="https://www.schiaparelli.com/en/haute-couture/haute-couture-fall-winter-2025-26/collection">Schiaparelli Inspiration</a>
@@ -31,44 +96,30 @@
 
     <!-- Project 2 -->
     <div class="project">
-        <img src="graphic.jpeg" alt="Adobe Illustrator Clothing Graphics" style="width: 50%; height: auto;">
+        <img src="graphic.jpeg" alt="Adobe Illustrator Clothing Graphics">
         <h2>Graphic Design in Illustrator on Hoodies</h2>
-        <p>This project focuses on a piece I designed in Adobe Illustrator. These designs are all built from scratch using the pen tool, custom gradients, and hand-colored swatches. I focused on layering each element intentionally to bring depth, dimension, and a more lifelike quality to otherwise flat vector forms. One of the standout pieces from this series is a custom floral pattern I designed entirely in Illustrator. After experimenting with swatches and redrawing each flower and connecting line digitally, I printed the pattern onto a hoodie to turn the illustration into wearable art. It was a long process of trial and refinement selecting the right colors, balancing detail, and making sure it felt cohesive when printed on fabric. This project taught me many skills and I now continue to use it to deisn and print on more pieces. Overall, this project pushed me to refine my digital art techniques while also exploring how my designs could live beyond the screen, whether as standalone visuals or as part of fashion and form.</p>
+        <p>This project focuses on a piece I designed in Adobe Illustrator. These designs are all built from scratch using the pen tool, custom gradients, and hand-colored swatches. I focused on layering each element intentionally to bring depth, dimension, and a more lifelike quality to otherwise flat vector forms. One of the standout pieces from this series is a custom floral pattern I designed entirely in Illustrator. After experimenting with swatches and redrawing each flower and connecting line digitally, I printed the pattern onto a hoodie to turn the illustration into wearable art. Overall, this project pushed me to refine my digital art techniques while also exploring how my designs could live beyond the screen.</p>
     </div>
 
     <!-- Project 3 -->
     <div class="project">
-        <img src="ribbonhang.png" alt="Hanging Ribbon Installation" style="width: 50%; height: auto;">
+        <img src="ribbonhang.png" alt="Hanging Ribbon Installation">
         <h2>Ribbon Chandeliers</h2>
-        <p>This project is a hanging installation I designed and built for my home using circular metal rings and individually tied ribbon. Each piece was assembled by hand, layering ribbon around the ring and then suspending the structure from the ceiling using string.
-
-One of the biggest challenges was achieving balance, both physically, so the rings would hang evenly, and visually, so the composition felt cohesive from every angle. I also added trailing ribbons along the hanging strings to create a sense of movement and softness.
-
-This installation reflects my interest in texture, symmetry, and spatial design, blending craft and sculpture into a form that adds energy and depth to a living space.</p>
+        <p>This project is a hanging installation I designed and built for my home using circular metal rings and individually tied ribbon. Each piece was assembled by hand, layering ribbon around the ring and then suspending the structure from the ceiling using string. One of the biggest challenges was achieving balance, both physically and visually. This installation reflects my interest in texture, symmetry, and spatial design.</p>
     </div>
-    
-<!-- Social Links -->
-<div style="text-align: center; margin-top: 40px;">
-    <h3 style="margin-bottom: 15px;">Connect with Me</h3>
-    <a href="https://allisonbrubaker.wixsite.com/design-portfolio" target="_blank" 
-       style="display: inline-block; background-color: #fbe8a6; color: #333; padding: 10px 20px; margin: 5px; border-radius: 6px; text-decoration: none;">
-       Wix Portfolio
-    </a>
-    <a href="https://www.linkedin.com/in/allison-brubaker-925295286/" target="_blank" 
-       style="display: inline-block; background-color: #ffd6d6; color: #333; padding: 10px 20px; margin: 5px; border-radius: 6px; text-decoration: none;">
-       LinkedIn
-    </a>
-    <a href="https://www.instagram.com/ally.brubaker/?hl=en" target="_blank" 
-       style="display: inline-block; background-color: #ffe0f0; color: #333; padding: 10px 20px; margin: 5px; border-radius: 6px; text-decoration: none;">
-       Instagram
-    </a>
-</div>
+
+    <!-- Social Links -->
+    <div class="socials">
+        <h3>Connect with Me</h3>
+        <a href="https://allisonbrubaker.wixsite.com/design-portfolio" target="_blank" class="wix">Wix Portfolio</a>
+        <a href="https://www.linkedin.com/in/allison-brubaker-925295286/" target="_blank" class="linkedin">LinkedIn</a>
+        <a href="https://www.instagram.com/ally.brubaker/?hl=en" target="_blank" class="instagram">Instagram</a>
+    </div>
 
     <footer>
         <p>©2025 Ally Brubaker</p>
     </footer>
 
-    <!-- TikTok Script -->
-    <script async src="https://www.tiktok.com/embed.js"></script>
+</div>
 </body>
 </html>
