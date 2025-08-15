@@ -5,23 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ally's Portfolio⭐</title>
 <style>
-    /* Simple page styling */
+    /* Body and container styling */
     body {
         background-color: #fff5e6;  /* soft cream background */
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
         display: flex;
-        justify-content: center;    /* center container horizontally */
+        justify-content: center;
     }
 
     .container {
-        max-width: 500px;           /* fits iPhone screen nicely */
+        max-width: 500px;            /* fits iPhone screen nicely */
         width: 100%;
-        border: 20px solid #ffc0cb;  /* soft pink border */
+        border: 10px solid #ffc0cb;  /* thicker soft pink border */
         padding: 20px;
         box-sizing: border-box;
-        background-color: #fff5e6;  /* match page background */
+        background-color: #fff5e6;
     }
 
     h1, h2, h3 {
@@ -33,15 +33,19 @@
     }
 
     .project {
-        text-align: center;         /* center content in each project */
-        margin-bottom: 40px;        /* spacing between projects */
+        text-align: center;
+        margin-bottom: 40px;
     }
 
-    iframe, img {
-        max-width: 100%;
+    /* Make images and videos the same size and centered */
+    .project iframe,
+    .project img {
+        width: 100%;
+        max-width: 480px;
         height: auto;
+        display: block;
+        margin: 0 auto 15px auto;
         border-radius: 6px;
-        margin-bottom: 15px;
     }
 
     /* Social buttons styling */
@@ -78,7 +82,7 @@
 
     <!-- Project 1 -->
     <div class="project">
-        <iframe width="420" height="236" 
+        <iframe 
             src="https://www.youtube.com/embed/R_NOlWvQWLQ" 
             title="3D Printed Dress Video" 
             frameborder="0" 
