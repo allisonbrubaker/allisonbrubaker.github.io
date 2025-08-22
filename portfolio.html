@@ -5,111 +5,147 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ally's Portfolio⭐</title>
 <style>
-    /* Body and container styling */
     body {
-        background-color: #fff5e6;  /* soft cream background */
         margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        background: repeating-linear-gradient(
+            90deg,
+            #ffffff,
+            #ffffff 20px,
+            #ffe6f0 20px,
+            #ffe6f0 40px
+        );
     }
 
-    .container {
-        max-width: 500px;            /* fits iPhone screen nicely */
-        width: 100%;
-        border: 20px solid #ffc0cb;  /* thicker soft pink border */
-        padding: 20px;
-        box-sizing: border-box;
-        background-color: #fff5e6;
+    h1, h2, h3 { text-align: center; margin: 0.5em 0; }
+    p { line-height: 1.6; }
+
+    header {
+        position: sticky; top: 0; background: #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05); z-index: 1000;
     }
 
-    h1, h2, h3 {
-        text-align: center;
+    nav {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 0.75em 1.5em;
+    }
+    nav .logo { font-weight: bold; font-size: 1.2rem; }
+    nav ul {
+        display: flex; gap: 1.5em; margin: 0; padding: 0; list-style: none;
+    }
+    nav ul li a {
+        text-decoration: none; font-weight: 500; color: #333;
+    }
+    nav ul li a:hover { color: #ff6f91; }
+
+    .hamburger { display: none; flex-direction: column; cursor: pointer; }
+    .hamburger span {
+        width: 25px; height: 3px; background: #333; margin: 4px 0;
     }
 
-    p {
-        line-height: 1.5;
+    .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
     }
 
     .project {
-        text-align: center;
-        margin-bottom: 40px;
+        background: #fff; border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        padding: 1rem;
+        transition: transform 0.3s; cursor: pointer;
+    }
+    .project:hover { transform: translateY(-5px); }
+
+    .project img, .project iframe {
+        width: 100%; height: auto;
+        border-radius: 8px; display: block;
     }
 
-    /* Make images and videos the same size and centered */
-    .project iframe,
-    .project img {
-        width: 100%;
-        max-width: 480px;
-        height: auto;
-        display: block;
-        margin: 0 auto 15px auto;
-        border-radius: 6px;
-    }
-
-    /* Social buttons styling */
-    .socials {
-        text-align: center;
-        margin-top: 40px;
-        margin-bottom: 20px;
-    }
-
+    .socials { text-align: center; margin: 3rem 0 1rem; }
     .socials a {
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 5px;
-        border-radius: 6px;
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
+        display: inline-block; padding: 10px 20px; margin: 5px;
+        border-radius: 20px; text-decoration: none; font-weight: bold;
+    }
+    .wix { background-color: #ffe6f0; }
+    .linkedin { background-color: #ffccd5; }
+    .instagram { background-color: #ffb3c6; }
+    .socials a:hover { opacity: 0.85; }
+
+    footer { text-align: center; padding: 2rem; font-size: 0.9rem; color: #666; }
+
+    /* Modal */
+    .modal {
+        display: none; position: fixed; z-index: 2000; inset: 0;
+        background: rgba(0,0,0,0.7); padding: 2rem;
+        overflow-y: auto;
+    }
+    .modal-content {
+        background: white; max-width: 800px; margin: auto; padding: 2rem;
+        border-radius: 12px; position: relative;
+        animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn {
+        from { transform: translateY(50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    .close-btn {
+        position: absolute; top: 10px; right: 15px;
+        font-size: 1.5rem; cursor: pointer; color: #ff6f91;
+    }
+    .modal img, .modal iframe {
+        width: 100%; height: auto; margin-bottom: 1rem;
+        border-radius: 8px;
     }
 
-    .wix { background-color: #fbe8a6; }       /* soft yellow */
-    .linkedin { background-color: #ffd6d6; }  /* soft pink */
-    .instagram { background-color: #ffe0f0; } /* lighter pink */
-
-    footer {
-        text-align: center;
-        margin-top: 40px;
+    @media (max-width: 768px) {
+        nav ul {
+            display: none; flex-direction: column; background: #fff;
+            position: absolute; top: 60px; right: 0; width: 200px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 1rem;
+        }
+        nav ul.active { display: flex; }
+        .hamburger { display: flex; }
     }
 </style>
 </head>
 <body>
-<div class="container">
 
+<header>
+    <nav>
+        <div class="logo">Ally⭐</div>
+        <ul id="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
     <h1>Ally's Portfolio⭐</h1>
 
-    <!-- Project 1 -->
-    <div class="project">
-        <iframe 
-            src="https://www.youtube.com/embed/R_NOlWvQWLQ" 
-            title="3D Printed Dress Video" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
+    <div class="grid">
+        <!-- Project 1 -->
+        <div class="project" onclick="openModal('modal1')">
+            <iframe src="https://www.youtube.com/embed/R_NOlWvQWLQ" frameborder="0" allowfullscreen></iframe>
+        </div>
 
-        <h2>Printed Couture: 3D Printed Dress</h2>
-        <p>This final project for my Session A Media Arts & Design class was a collaborative exploration of how fashion, coding, and digital fabrication can come together to push the boundaries of creative expression. Working with a partner, we designed a custom lace system using a code-based approach grounded in repetition, transformation, and recursion. Our goal was to generate intricate lace-like patterns that could be 3D printed and sewn directly into a dress, blending the delicate aesthetic of traditional lace with the sharp innovation of computational design.</p>
-        <p>
-            <a href="https://www.irisvanherpen.com/collections/voltage/voltage-show">Iris van Herpen Inspiration</a> |
-            <a href="https://www.schiaparelli.com/en/haute-couture/haute-couture-fall-winter-2025-26/collection">Schiaparelli Inspiration</a>
-        </p>
-    </div>
+        <!-- Project 2 -->
+        <div class="project" onclick="openModal('modal2')">
+            <img src="graphic.png" alt="Adobe Illustrator Clothing Graphics">
+        </div>
 
-    <!-- Project 2 -->
-    <div class="project">
-        <img src="graphic.png" alt="Adobe Illustrator Clothing Graphics">
-        <h2>Graphic Design in Illustrator on Hoodies</h2>
-        <p>This project focuses on a piece I designed in Adobe Illustrator. These designs are all built from scratch using the pen tool, custom gradients, and hand-colored swatches. I focused on layering each element intentionally to bring depth, dimension, and a more lifelike quality to otherwise flat vector forms. One of the standout pieces from this series is a custom floral pattern I designed entirely in Illustrator. After experimenting with swatches and redrawing each flower and connecting line digitally, I printed the pattern onto a hoodie to turn the illustration into wearable art. Overall, this project pushed me to refine my digital art techniques while also exploring how my designs could live beyond the screen.</p>
-    </div>
-
-    <!-- Project 3 -->
-    <div class="project">
-        <img src="ribbonhang.png" alt="Hanging Ribbon Installation">
-        <h2>Ribbon Chandeliers</h2>
-        <p>This project is a hanging installation I designed and built for my home using circular metal rings and individually tied ribbon. Each piece was assembled by hand, layering ribbon around the ring and then suspending the structure from the ceiling using string. One of the biggest challenges was achieving balance, both physically and visually. This installation reflects my interest in texture, symmetry, and spatial design.</p>
+        <!-- Project 3 -->
+        <div class="project" onclick="openModal('modal3')">
+            <img src="ribbonhang.png" alt="Hanging Ribbon Installation">
+        </div>
     </div>
 
     <!-- Social Links -->
@@ -120,10 +156,50 @@
         <a href="https://www.instagram.com/ally.brubaker/?hl=en" target="_blank" class="instagram">Instagram</a>
     </div>
 
-    <footer>
-        <p>©2025 Ally Brubaker</p>
-    </footer>
-
+    <footer><p>©2025 Ally Brubaker</p></footer>
 </div>
+
+<!-- ===== Modals ===== -->
+<div class="modal" id="modal1">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal1')">&times;</span>
+        <iframe src="https://www.youtube.com/embed/R_NOlWvQWLQ" frameborder="0" allowfullscreen></iframe>
+        <h2>Printed Couture: 3D Printed Dress</h2>
+        <p>This final project for my Session A Media Arts & Design class was a collaborative exploration of how fashion, coding, and digital fabrication can come together to push creative expression.</p>
+        <p><a href="https://www.irisvanherpen.com/collections/voltage/voltage-show">Iris van Herpen Inspiration</a> | 
+           <a href="https://www.schiaparelli.com/en/haute-couture/haute-couture-fall-winter-2025-26/collection">Schiaparelli Inspiration</a></p>
+    </div>
+</div>
+
+<div class="modal" id="modal2">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal2')">&times;</span>
+        <img src="graphic.png" alt="Adobe Illustrator Clothing Graphics">
+        <h2>Graphic Design in Illustrator on Hoodies</h2>
+        <p>This project focuses on a piece I designed in Adobe Illustrator. After experimenting with swatches and redrawing each flower digitally, I printed the pattern onto a hoodie to turn the illustration into wearable art.</p>
+    </div>
+</div>
+
+<div class="modal" id="modal3">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal3')">&times;</span>
+        <img src="ribbonhang.png" alt="Hanging Ribbon Installation">
+        <h2>Ribbon Chandeliers</h2>
+        <p>This project is a hanging installation I designed and built for my home using circular metal rings and individually tied ribbon. It reflects my interest in texture, symmetry, and spatial design.</p>
+    </div>
+</div>
+
+<script>
+function toggleMenu() {
+    document.getElementById("nav-links").classList.toggle("active");
+}
+function openModal(id) {
+    document.getElementById(id).style.display = "block";
+}
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+}
+</script>
+
 </body>
 </html>
