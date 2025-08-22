@@ -1,33 +1,142 @@
-<html>
-    <head>
-        <title>⭐⭐⭐</title>
-        <script src="https://cdn.jsdelivr.net/npm/p5@1.11.8/lib/p5.js"></script>
-    </head>
-    <body>
-         <h1>Hi!!⭐</h1>
-        <main>
-            <img src="me.png" style="width: 50%; height: auto;">
-            <p>
-               <h1>Ally Brubaker</h1> 
-                <h2>"There's a reason we are drawn to gazing at the ocean. It is said the ocean provides a closer reflection of who we are than any mirror." - Rick Rubin</h2> 
-                 
-                <p>Ally is a communication major with a minor in Professional Writing and Media Arts and Design. She is on the UCSB Women's Lacrosse team and loves graphic design and fashion. She is an artist and designer whose work explores the intersections
-of fashion, technology, and physical space. Drawing on skills in 3D modeling, digital fabrication,
-illustration, and code-based design, she creates objects and installations. Whether crafting a computationally generated lace dress, layering collages for
-imagined interiors, or suspending ribbons in sculptural arrangements, her work is united by a
-fascination with how materials tell stories. Fashion is a recurring language in her work, serving as both a personal outlet for self-
-expression and a lens for exploring broader cultural ideas about identity and beauty. Through her projects, Allison invites audiences to experience the tactile and the technological as
-complementary forces, revealing new possibilities for how we inhabit and interact with the
-designed world.</p>
-            </p>
-            <p><a href="portfolio">portfolio</a></p>
-        </main>
-  
-        <script src="sketch.js"></script>
-  
-        <footer>
-            <p>©2025 Ally Brubaker </p>
-        </footer>
-    </body>
-</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hi!!⭐</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      background: repeating-linear-gradient(
+        90deg,
+        #ffffff,
+        #ffffff 20px,
+        #ffe6f0 20px,
+        #ffe6f0 40px
+      );
+    }
 
+    header {
+      position: sticky; top: 0; background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05); z-index: 1000;
+    }
+
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.75em 1.5em;
+    }
+    nav .logo { font-weight: bold; font-size: 1.2rem; }
+    nav ul {
+      display: flex; gap: 1.5em; margin: 0; padding: 0; list-style: none;
+    }
+    nav ul li a {
+      text-decoration: none; font-weight: 500; color: #333;
+    }
+    nav ul li a:hover { color: #ff6f91; }
+
+    .hamburger { display: none; flex-direction: column; cursor: pointer; }
+    .hamburger span {
+      width: 25px; height: 3px; background: #333; margin: 4px 0;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    main h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    main h2 { font-weight: 400; font-size: 1.2rem; color: #555; margin-bottom: 1.5rem; }
+
+    main img {
+      width: 50%; height: auto; border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 1.5rem;
+    }
+
+    main p {
+      line-height: 1.6;
+      text-align: left;
+      margin-bottom: 1.5rem;
+    }
+
+    main a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 10px 20px;
+      background: #ffccd5;
+      color: #333;
+      font-weight: bold;
+      border-radius: 20px;
+      text-decoration: none;
+    }
+    main a:hover { opacity: 0.85; }
+
+    footer {
+      text-align: center; padding: 2rem; font-size: 0.9rem; color: #666;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none; flex-direction: column; background: #fff;
+        position: absolute; top: 60px; right: 0; width: 200px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 1rem;
+      }
+      nav ul.active { display: flex; }
+      .hamburger { display: flex; }
+      main img { width: 80%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Ally⭐</div>
+    <ul id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <h1>Hi!!⭐</h1>
+  <img src="me.png" alt="Portrait of Ally Brubaker">
+  <h1>Ally Brubaker</h1>
+  <h2>"There's a reason we are drawn to gazing at the ocean... - Rick Rubin"</h2>
+
+  <p>
+    Ally is a communication major with a minor in Professional Writing and Media Arts and Design. She is on the UCSB Women's Lacrosse team and loves graphic design and fashion. She is an artist and designer whose work explores the intersections
+    of fashion, technology, and physical space.
+  </p>
+  <p>
+    Drawing on skills in 3D modeling, digital fabrication, illustration, and code-based design, she creates objects and installations. Whether crafting a computationally generated lace dress, layering collages for imagined interiors, or suspending ribbons in sculptural arrangements, her work is united by a fascination with how materials tell stories.
+  </p>
+  <p>
+    Fashion is a recurring language in her work, serving as both a personal outlet for self-expression and a lens for exploring broader cultural ideas about identity and beauty. Through her projects, Allison invites audiences to experience the tactile and the technological as complementary forces, revealing new possibilities for how we inhabit and interact with the designed world.
+  </p>
+
+  <a href="portfolio.html">View My Portfolio</a>
+</main>
+
+<footer>
+  <p>©2025 Ally Brubaker</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById("nav-links").classList.toggle("active");
+  }
+</script>
+
+</body>
+</html>
