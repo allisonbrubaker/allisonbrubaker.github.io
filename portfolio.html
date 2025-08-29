@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ally's Portfolio⭐</title>
 
-<!-- Fun font (kept colors the same) -->
+<!-- Fun font (kept your colors the same) -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
 
 <style>
@@ -26,12 +26,50 @@
 
   header{ position:sticky; top:0; background:#fff; box-shadow:0 2px 5px rgba(0,0,0,.05); z-index:1000;}
   nav{ display:flex; justify-content:space-between; align-items:center; padding:.75em 1.5em;}
-  nav .logo{ font-weight:700; font-size:1.25rem;}
-  nav ul{ display:flex; gap:1.5em; margin:0; padding:0; list-style:none;}
-  nav ul li a{ text-decoration:none; font-weight:600; color:#333;}
-  nav ul li a:hover{ color:var(--pink);}
-  .hamburger{ display:none; flex-direction:column; cursor:pointer;}
+  .logo{ font-weight:700; font-size:1.25rem;}
+
+  /* Desktop nav */
+  .nav-links{
+    display:flex; gap:1.25rem; align-items:center; margin:0; padding:0; list-style:none;
+  }
+  .nav-links > li{ position:relative; }
+  .nav-links a{ text-decoration:none; font-weight:600; color:#333; display:inline-block; padding:.4rem .2rem; }
+  .nav-links a:hover{ color:var(--pink); }
+
+  /* Dropdown (Projects) – fixed no-gap + keyboard focus support */
+  .dropdown-toggle{ display:flex; align-items:center; gap:.35rem; cursor:pointer; }
+  .caret{ border: solid currentColor; border-width: 0 2px 2px 0; display: inline-block; padding: 3px; transform: rotate(45deg); margin-top: -2px; }
+  .dropdown{
+    position:absolute; top:100%; left:0;              /* no gap so mouse can reach */
+    background:#fff; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,.08);
+    padding:.5rem 0; list-style:none; width:250px; display:none;
+  }
+  .dropdown li a{ padding:.5rem .9rem; width:100%; }
+  .dropdown li a:hover{ background:#ffe6f0; color:#333; }
+
+  /* Show dropdown on desktop hover or focus */
+  @media (min-width:769px){
+    .nav-links > li:hover .dropdown,
+    .nav-links > li:focus-within .dropdown{ display:block; }
+  }
+
+  /* Hamburger (mobile) */
+  .hamburger{ display:none; flex-direction:column; cursor:pointer; }
   .hamburger span{ width:25px; height:3px; background:#333; margin:4px 0; border-radius:4px;}
+  @media (max-width:768px){
+    .hamburger{ display:flex; }
+    .nav-links{
+      position:absolute; top:60px; right:0; left:0;
+      background:#fff; flex-direction:column; gap:0; display:none;
+      box-shadow:0 8px 20px rgba(0,0,0,.08); border-radius:0 0 12px 12px;
+      overflow:hidden;
+    }
+    .nav-links.active{ display:flex; }
+    .nav-links > li{ width:100%; }
+    .nav-links > li > a, .dropdown-toggle{ width:100%; padding:1rem 1.1rem; }
+    .dropdown{ position:static; width:100%; display:none; box-shadow:none; border-radius:0; }
+    .dropdown.show{ display:block; }
+  }
 
   .container{ max-width:1200px; margin:2rem auto; padding:0 1rem;}
 
@@ -53,15 +91,11 @@
     overflow:hidden;
     transition:transform .25s ease, box-shadow .25s ease;
     cursor:pointer;
-    aspect-ratio:1/1; /* full tile coverage (square) */
+    aspect-ratio:1/1; /* square tiles */
   }
   .project:hover{ transform:translateY(-6px); box-shadow:0 8px 20px rgba(0,0,0,.08); }
 
-  .media{
-    position:absolute; inset:0;
-    width:100%; height:100%;
-    overflow:hidden;
-  }
+  .media{ position:absolute; inset:0; width:100%; height:100%; overflow:hidden; }
   .media img{ width:100%; height:100%; object-fit:cover; display:block; }
 
   /* Hide grid text; show only in modals */
@@ -82,7 +116,7 @@
   .hover-tag{ font-size:.9rem; opacity:.95; font-weight:600; }
   .project:hover .hover-info{ transform:translateY(0); }
 
-  /* Play overlay for video card (kept as-is) */
+  /* Play overlay (for the video cover card) */
   .play-badge{
     position:absolute; inset:0; display:grid; place-items:center;
     background:linear-gradient(transparent, rgba(0,0,0,.05));
@@ -94,10 +128,7 @@
   }
   .play-badge .icon::before{
     content:""; width:0; height:0; display:block;
-    border-left:20px solid #fff;
-    border-top:12px solid transparent;
-    border-bottom:12px solid transparent;
-    margin-left:4px;
+    border-left:20px solid #fff; border-top:12px solid transparent; border-bottom:12px solid transparent; margin-left:4px;
   }
   .project:hover .play-badge{ background:linear-gradient(transparent, rgba(0,0,0,.12)); }
   .project:hover .play-badge .icon{ transform:scale(1.06); }
@@ -116,12 +147,6 @@
   .close-btn{ position:absolute; top:10px; right:14px; font-size:1.6rem; line-height:1; cursor:pointer; color:var(--pink); }
   .modal img, .modal iframe{ width:100%; height:auto; margin-bottom:1rem; border-radius:8px; }
 
-  /* Mobile nav */
-  @media (max-width:768px){
-    nav ul{ display:none; flex-direction:column; background:#fff; position:absolute; top:60px; right:0; width:220px; box-shadow:0 2px 8px rgba(0,0,0,.1); padding:1rem;}
-    nav ul.active{ display:flex; }
-    .hamburger{ display:flex; }
-  }
 </style>
 </head>
 <body>
@@ -129,33 +154,55 @@
 <header>
   <nav>
     <div class="logo">Ally⭐</div>
-    <ul id="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Portfolio</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
+
+    <!-- NAV -->
+    <ul id="nav-links" class="nav-links">
+      <!-- Home (replace href with your GitHub Pages URL if different) -->
+      <li><a href="https://your-username.github.io/" target="_self">Home</a></li>
+
+      <!-- Projects dropdown -->
+      <li>
+        <a href="#projects" class="dropdown-toggle" id="projects-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+          Projects <i class="caret"></i>
+        </a>
+        <ul class="dropdown" aria-label="Projects submenu">
+          <li><a href="#p1">3D Printed Dress</a></li>
+          <li><a href="#p2">Adobe Illustrator — Apparel</a></li>
+          <li><a href="#p3">Hanging Installation</a></li>
+          <li><a href="#p4">Doily Skirt</a></li>
+          <li><a href="#p5">Laser-Cut Roxy Coaster</a></li>
+          <li><a href="#p6">Tea Bag Organizer</a></li>
+          <li><a href="#p7">Doily Set (WIP)</a></li>
+          <li><a href="#p8">Laser + Denim (WIP)</a></li>
+          <li><a href="#p9">Haleakalā Poster</a></li>
+        </ul>
+      </li>
+
+      <!-- Connect (scroll to socials) -->
+      <li><a href="#connect">Connect</a></li>
     </ul>
-    <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation" role="button" tabindex="0">
+
+    <!-- Hamburger -->
+    <div class="hamburger" id="hamburger" aria-label="Toggle navigation" role="button" tabindex="0">
       <span></span><span></span><span></span>
     </div>
   </nav>
 </header>
 
 <div class="container">
-  <h1>Ally's Projects⭐</h1>
+  <h1 id="projects">Ally's Projects⭐</h1>
 
   <div class="grid">
-    <!-- 1) 3D Printed Dress (YouTube) -->
-    <article class="project" onclick="openModal('modal1')" aria-label="Open 3D Printed Dress video">
+    <!-- 1) 3D Printed Dress (grid cover is dress.png; modal plays video) -->
+    <article id="p1" class="project" onclick="openModal('modal1')" aria-label="Open 3D Printed Dress video">
       <div class="media">
-        <img src="https://img.youtube.com/vi/R_NOlWvQWLQ/hqdefault.jpg" alt="3D Printed Dress thumbnail"/>
+        <img src="dress.png" alt="3D Printed Dress cover image"/>
         <div class="play-badge" aria-hidden="true"><div class="icon"></div></div>
         <div class="hover-info">
           <div class="hover-title">Printed Couture: 3D Printed Dress</div>
           <div class="hover-tag">code-made lace • 3D print</div>
         </div>
       </div>
-      <!-- keep your text; hidden in grid -->
       <div class="card-body">
         <h3 class="card-title">Printed Couture: 3D Printed Dress</h3>
         <p class="card-desc">This final project for my Session A Media Arts & Design class was a collaborative exploration of how fashion, coding, and digital fabrication can come together to push the boundaries of creative expression. Working with a partner, we designed a custom lace system using a code-based approach grounded in repetition, transformation, and recursion. Our goal was to generate intricate lace-like patterns that could be 3D printed and sewn directly into a dress, blending the delicate aesthetic of traditional lace with the sharp innovation of computational design.</p>
@@ -163,7 +210,7 @@
     </article>
 
     <!-- 2) Adobe Illustrator work -->
-    <article class="project" onclick="openModal('modal2')" aria-label="Open Illustrator work">
+    <article id="p2" class="project" onclick="openModal('modal2')" aria-label="Open Illustrator work">
       <div class="media">
         <img src="graphic.png" alt="Adobe Illustrator clothing graphics"/>
         <div class="hover-info">
@@ -178,7 +225,7 @@
     </article>
 
     <!-- 3) Hanging installation -->
-    <article class="project" onclick="openModal('modal3')" aria-label="Open Hanging Installation">
+    <article id="p3" class="project" onclick="openModal('modal3')" aria-label="Open Hanging Installation">
       <div class="media">
         <img src="ribbonhang.png" alt="Hanging ribbon installation"/>
         <div class="hover-info">
@@ -193,7 +240,7 @@
     </article>
 
     <!-- 4) Doily Skirt -->
-    <article class="project" onclick="openModal('modal4')" aria-label="Open Doily Skirt">
+    <article id="p4" class="project" onclick="openModal('modal4')" aria-label="Open Doily Skirt">
       <div class="media">
         <img src="doilyskirt.png" alt="Doily skirt"/>
         <div class="hover-info">
@@ -212,7 +259,7 @@ This experiment inspired me to consider expanding the idea into a full doily set
     </article>
 
     <!-- 5) Laser-cut Roxy coaster -->
-    <article class="project" onclick="openModal('modal5')" aria-label="Open Roxy Coaster">
+    <article id="p5" class="project" onclick="openModal('modal5')" aria-label="Open Roxy Coaster">
       <div class="media">
         <img src="RoxyCoasty.png" alt="Laser-cut Roxy coaster design"/>
         <div class="hover-info">
@@ -229,7 +276,7 @@ Once finalized, I prepared the file for laser cutting using both cutting and eng
     </article>
 
     <!-- 6) Tea bag organizer (Fusion + laser) -->
-    <article class="project" onclick="openModal('modal6')" aria-label="Open Tea Bag Organizer">
+    <article id="p6" class="project" onclick="openModal('modal6')" aria-label="Open Tea Bag Organizer">
       <div class="media">
         <img src="teaorgPORT.png" alt="Tea bag organizer designed in Fusion 360 and laser cut"/>
         <div class="hover-info">
@@ -248,7 +295,7 @@ The finished piece now hangs by my microwave and keeps my tea collection neat an
     </article>
 
     <!-- 7) Doily set (WIP) -->
-    <article class="project" onclick="openModal('modal7')" aria-label="Open Doily Set WIP">
+    <article id="p7" class="project" onclick="openModal('modal7')" aria-label="Open Doily Set WIP">
       <div class="media">
         <img src="doilyset.png" alt="Doily set work in progress"/>
         <div class="hover-info">
@@ -267,7 +314,7 @@ This work-in-progress is both a fashion experiment and a way of honoring the art
     </article>
 
     <!-- 8) Laser cutting with denim/materials (WIP) -->
-    <article class="project" onclick="openModal('modal8')" aria-label="Open Laser Cutting with Denim WIP">
+    <article id="p8" class="project" onclick="openModal('modal8')" aria-label="Open Laser Cutting with Denim WIP">
       <div class="media">
         <img src="cutdenim-ex.png" alt="Laser cutting with denim and clothing material work in progress"/>
         <div class="hover-info">
@@ -286,7 +333,7 @@ The project is still developing, but it has already pushed me to think about how
     </article>
 
     <!-- 9) Mount Haleakalā Illustrator poster -->
-    <article class="project" onclick="openModal('modal9')" aria-label="Open Haleakalā Poster">
+    <article id="p9" class="project" onclick="openModal('modal9')" aria-label="Open Haleakalā Poster">
       <div class="media">
         <img src="mount.h.png" alt="Mount Haleakalā national-park-style poster illustration"/>
         <div class="hover-info">
@@ -302,7 +349,7 @@ The project is still developing, but it has already pushed me to think about how
   </div>
 
   <!-- socials -->
-  <div class="socials">
+  <div id="connect" class="socials">
     <h3>Connect with Me</h3>
     <a href="https://allisonbrubaker.wixsite.com/design-portfolio" target="_blank" class="wix">Wix Portfolio</a>
     <a href="https://www.linkedin.com/in/allison-brubaker-925295286/" target="_blank" class="linkedin">LinkedIn</a>
@@ -312,11 +359,13 @@ The project is still developing, but it has already pushed me to think about how
   <footer><p>©2025 Ally Brubaker</p></footer>
 </div>
 
-<!-- ===== Modals (png images + your long descriptions) ===== -->
+<!-- ===== Modals ===== -->
+<!-- 1) Video modal — autoplay on open, description included -->
 <div class="modal" id="modal1" aria-modal="true" role="dialog">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal('modal1')" aria-label="Close">&times;</span>
     <iframe
+      id="dressVideo"
       src="https://www.youtube.com/embed/R_NOlWvQWLQ"
       title="Printed Couture: 3D Printed Dress"
       frameborder="0"
@@ -324,7 +373,7 @@ The project is still developing, but it has already pushed me to think about how
       allowfullscreen
     ></iframe>
     <h2>Printed Couture: 3D Printed Dress</h2>
-    <p><!-- (Optional) Add a longer video description here --></p>
+    <p>This final project for my Session A Media Arts & Design class was a collaborative exploration of how fashion, coding, and digital fabrication can come together to push the boundaries of creative expression. Working with a partner, we designed a custom lace system using a code-based approach grounded in repetition, transformation, and recursion. Our goal was to generate intricate lace-like patterns that could be 3D printed and sewn directly into a dress, blending the delicate aesthetic of traditional lace with the sharp innovation of computational design.</p>
   </div>
 </div>
 
@@ -401,25 +450,85 @@ The project is still developing, but it has already pushed me to think about how
 </div>
 
 <script>
-  function toggleMenu(){
-    document.getElementById("nav-links").classList.toggle("active");
-  }
+  // Hamburger toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  const projectsToggle = document.getElementById('projects-toggle');
+  const dropdown = projectsToggle?.nextElementSibling;
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  // Mobile: toggle Projects submenu on tap/click
+  projectsToggle.addEventListener('click', (e) => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile) {
+      e.preventDefault();
+      dropdown.classList.toggle('show');
+      const expanded = projectsToggle.getAttribute('aria-expanded') === 'true';
+      projectsToggle.setAttribute('aria-expanded', String(!expanded));
+    }
+  });
+
+  // Desktop: click-to-open toggle (keeps menu open until clicking elsewhere)
+  projectsToggle.addEventListener('click', (e) => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (!isMobile) {
+      e.preventDefault();
+      dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+
+      const closeOnOutsideClick = (evt) => {
+        const li = projectsToggle.closest('li');
+        if (!li.contains(evt.target)) {
+          dropdown.style.display = 'none';
+          document.removeEventListener('click', closeOnOutsideClick);
+        }
+      };
+      setTimeout(()=>document.addEventListener('click', closeOnOutsideClick), 0);
+    }
+  });
+
+  // Smooth scroll for in-page links (Projects & Connect)
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Close mobile menu after navigating
+        navLinks.classList.remove('active');
+        dropdown?.classList.remove('show');
+      }
+    });
+  });
 
   function openModal(id){
     const modal = document.getElementById(id);
     if(!modal) return;
     modal.style.display = "block";
+
+    // Autoplay the dress video when opening modal1
+    if(id === 'modal1'){
+      const iframe = document.getElementById('dressVideo');
+      if(iframe){
+        const hasQuery = iframe.src.includes('?');
+        const base = iframe.src.split('?')[0];
+        iframe.src = base + (hasQuery ? '&' : '?') + 'autoplay=1';
+      }
+    }
   }
 
   function closeModal(id){
     const modal = document.getElementById(id);
     if(!modal) return;
     modal.style.display = "none";
-    // Stop YouTube playback by resetting src
+
+    // Stop YouTube playback by resetting src (removes autoplay)
     const iframe = modal.querySelector("iframe");
     if(iframe){
-      const src = iframe.src;
-      iframe.src = src;
+      const base = iframe.src.split('?')[0];
+      iframe.src = base;
     }
   }
 
@@ -432,6 +541,9 @@ The project is still developing, but it has already pushed me to think about how
   document.addEventListener('keydown', (e)=>{
     if(e.key === 'Escape'){
       document.querySelectorAll('.modal').forEach(m => m.style.display="none");
+      // stop any playing video
+      const ifr = document.getElementById('dressVideo');
+      if(ifr){ ifr.src = ifr.src.split('?')[0]; }
     }
   });
 </script>
