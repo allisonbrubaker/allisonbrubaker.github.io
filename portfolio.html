@@ -40,22 +40,45 @@
   @media (max-width:1024px){ .grid{ grid-template-columns:repeat(2, 1fr);} }
   @media (max-width:640px){ .grid{ grid-template-columns:1fr;} }
 
-  /* Cards */
+  /* Cards – image fills entire tile; text hidden until modal */
   .project{
+    position:relative;
     background:#fff;
     border-radius:12px;
     box-shadow:0 4px 10px rgba(0,0,0,.05);
     overflow:hidden;
     transition:transform .25s ease, box-shadow .25s ease;
     cursor:pointer;
-    display:flex; flex-direction:column;
+    aspect-ratio:1/1; /* full tile coverage */
   }
   .project:hover{ transform:translateY(-6px); box-shadow:0 8px 20px rgba(0,0,0,.08); }
 
-  .media{ position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; }
+  .media{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    overflow:hidden;
+  }
   .media img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-  /* Play overlay for video card */
+  /* Hide grid text; show only in modals */
+  .card-body{ display:none; }
+
+  /* Hover overlay with title + tagline */
+  .hover-info{
+    position:absolute; inset:auto 0 0 0;
+    padding:.75rem 1rem;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 60%);
+    color:#fff;
+    display:flex; flex-direction:column; gap:.2rem;
+    transform:translateY(100%);
+    transition:transform .2s ease;
+    pointer-events:none;
+  }
+  .hover-title{ font-weight:700; font-size:1rem; line-height:1.2; }
+  .hover-tag{ font-size:.9rem; opacity:.95; }
+  .project:hover .hover-info{ transform:translateY(0); }
+
+  /* Play overlay for video card (kept as-is) */
   .play-badge{
     position:absolute; inset:0; display:grid; place-items:center;
     background:linear-gradient(transparent, rgba(0,0,0,.05));
@@ -75,18 +98,14 @@
   .project:hover .play-badge{ background:linear-gradient(transparent, rgba(0,0,0,.12)); }
   .project:hover .play-badge .icon{ transform:scale(1.06); }
 
-  .card-body{ padding:1rem 1rem 1.25rem; }
-  .card-title{ margin:0 0 .35rem; font-size:1.05rem; font-weight:700;}
-  .card-desc{ margin:0; color:#555; font-size:.95rem;}
-
-  /* Socials / Footer (optional) */
+  /* Socials / Footer (unchanged) */
   .socials{ text-align:center; margin:3rem 0 1rem;}
   .socials a{ display:inline-block; padding:10px 20px; margin:5px; border-radius:20px; text-decoration:none; font-weight:bold; color:#fff;}
   .wix{ background-color:#ff8fb1;} .linkedin{ background-color:#7ea5ff;} .instagram{ background-color:#ffb3c6;}
   .socials a:hover{ opacity:.9;}
   footer{ text-align:center; padding:2rem; font-size:.9rem; color:#666;}
 
-  /* Modal */
+  /* Modal (unchanged functionality) */
   .modal{ display:none; position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,.7); padding:2rem; overflow-y:auto;}
   .modal-content{ background:#fff; max-width:900px; margin:auto; padding:1.25rem 1.25rem 1.75rem; border-radius:12px; position:relative; animation:slideIn .25s ease-out;}
   @keyframes slideIn{ from{ transform:translateY(40px); opacity:0;} to{ transform:translateY(0); opacity:1;} }
@@ -127,7 +146,12 @@
       <div class="media">
         <img src="https://img.youtube.com/vi/R_NOlWvQWLQ/hqdefault.jpg" alt="3D Printed Dress thumbnail"/>
         <div class="play-badge" aria-hidden="true"><div class="icon"></div></div>
+        <div class="hover-info">
+          <div class="hover-title">Printed Couture: 3D Printed Dress</div>
+          <div class="hover-tag">code-made lace • 3D print</div>
+        </div>
       </div>
+      <!-- keep your text; hidden in grid -->
       <div class="card-body">
         <h3 class="card-title">Printed Couture: 3D Printed Dress</h3>
         <p class="card-desc">This final project for my Session A Media Arts & Design class was a collaborative exploration of how fashion, coding, and digital fabrication can come together to push the boundaries of creative expression. Working with a partner, we designed a custom lace system using a code-based approach grounded in repetition, transformation, and recursion. Our goal was to generate intricate lace-like patterns that could be 3D printed and sewn directly into a dress, blending the delicate aesthetic of traditional lace with the sharp innovation of computational design.</p>
@@ -138,6 +162,10 @@
     <article class="project" onclick="openModal('modal2')" aria-label="Open Illustrator work">
       <div class="media">
         <img src="graphic.png" alt="Adobe Illustrator clothing graphics"/>
+        <div class="hover-info">
+          <div class="hover-title">Adobe Illustrator — Apparel</div>
+          <div class="hover-tag">vector art • apparel</div>
+        </div>
       </div>
       <div class="card-body">
         <h3 class="card-title">Adobe Illustrator — Apparel</h3>
@@ -149,6 +177,10 @@
     <article class="project" onclick="openModal('modal3')" aria-label="Open Hanging Installation">
       <div class="media">
         <img src="ribbonhang.png" alt="Hanging ribbon installation"/>
+        <div class="hover-info">
+          <div class="hover-title">Hanging Installation</div>
+          <div class="hover-tag">ribbon • balance • space</div>
+        </div>
       </div>
       <div class="card-body">
         <h3 class="card-title">Hanging Installation</h3>
@@ -160,6 +192,10 @@
     <article class="project" onclick="openModal('modal4')" aria-label="Open Doily Skirt">
       <div class="media">
         <img src="doilyskirt.png" alt="Doily skirt"/>
+        <div class="hover-info">
+          <div class="hover-title">Doily Skirt</div>
+          <div class="hover-tag">vintage crochet • wearable</div>
+        </div>
       </div>
       <div class="card-body">
         <h3 class="card-title">Doily Skirt</h3>
@@ -175,6 +211,10 @@ This experiment inspired me to consider expanding the idea into a full doily set
     <article class="project" onclick="openModal('modal5')" aria-label="Open Roxy Coaster">
       <div class="media">
         <img src="RoxyCoasty.png" alt="Laser-cut Roxy coaster design"/>
+        <div class="hover-info">
+          <div class="hover-title">Laser-Cut Roxy Coaster</div>
+          <div class="hover-tag">code → coaster</div>
+        </div>
       </div>
       <div class="card-body">
         <h3 class="card-title">Laser-Cut Roxy Coaster</h3>
@@ -188,6 +228,10 @@ Once finalized, I prepared the file for laser cutting using both cutting and eng
     <article class="project" onclick="openModal('modal6')" aria-label="Open Tea Bag Organizer">
       <div class="media">
         <img src="teaorgPORT.png" alt="Tea bag organizer designed in Fusion 360 and laser cut"/>
+        <div class="hover-info">
+          <div class="hover-title">Tea Bag Organizer</div>
+          <div class="hover-tag">press-fit • storage</div>
+        </div>
       </div>
       <div class="card-body">
         <h3 class="card-title">Tea Bag Organizer</h3>
@@ -203,6 +247,10 @@ The finished piece now hangs by my microwave and keeps my tea collection neat an
     <article class="project" onclick="openModal('modal7')" aria-label="Open Doily Set WIP">
       <div class="media">
         <img src="doilyset.png" alt="Doily set work in progress"/>
+        <div class="hover-info">
+          <div class="hover-title">Doily Set (WIP)</div>
+          <div class="hover-tag">heritage × fashion</div>
+        </div>
       </div>
       <div class="card-body">
         <h3 class="card-title">Doily Set (WIP)</h3>
@@ -218,6 +266,10 @@ This work-in-progress is both a fashion experiment and a way of honoring the art
     <article class="project" onclick="openModal('modal8')" aria-label="Open Laser Cutting with Denim WIP">
       <div class="media">
         <img src="cutdenim-ex.png" alt="Laser cutting with denim and clothing material work in progress"/>
+        <div class="hover-info">
+          <div class="hover-title">Laser + Denim (WIP)</div>
+          <div class="hover-tag">laser-cut jeans</div>
+        </div>
       </div>
       <div class="card-body">
         <h3 class="card-title">Laser + Denim (WIP)</h3>
@@ -233,6 +285,10 @@ The project is still developing, but it has already pushed me to think about how
     <article class="project" onclick="openModal('modal9')" aria-label="Open Haleakalā Poster">
       <div class="media">
         <img src="mount.h.png" alt="Mount Haleakalā national-park-style poster illustration"/>
+        <div class="hover-info">
+          <div class="hover-title">Haleakalā Poster</div>
+          <div class="hover-tag">Illustrator poster</div>
+        </div>
       </div>
       <div class="card-body">
         <h3 class="card-title">Haleakalā Poster</h3>
@@ -252,8 +308,7 @@ The project is still developing, but it has already pushed me to think about how
   <footer><p>©2025 Ally Brubaker</p></footer>
 </div>
 
-<!-- ===== Modals (fill in images & descriptions) ===== -->
-<!-- 1) Video -->
+<!-- ===== Modals (unchanged; show full image/video + your text) ===== -->
 <div class="modal" id="modal1" aria-modal="true" role="dialog">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal('modal1')" aria-label="Close">&times;</span>
