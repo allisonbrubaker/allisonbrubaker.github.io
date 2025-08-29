@@ -4,6 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ally's Portfolio⭐</title>
+
+<!-- Fun font (kept colors the same) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+
 <style>
   :root{
     --pink:#ff6f91;
@@ -13,7 +17,7 @@
   *{box-sizing:border-box}
   body{
     margin:0;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:"Poppins", Arial, Helvetica, sans-serif;
     color:#333;
     background:repeating-linear-gradient(90deg,var(--bgstripe1),var(--bgstripe1) 20px,var(--bgstripe2) 20px,var(--bgstripe2) 40px);
   }
@@ -22,12 +26,12 @@
 
   header{ position:sticky; top:0; background:#fff; box-shadow:0 2px 5px rgba(0,0,0,.05); z-index:1000;}
   nav{ display:flex; justify-content:space-between; align-items:center; padding:.75em 1.5em;}
-  nav .logo{ font-weight:bold; font-size:1.2rem;}
+  nav .logo{ font-weight:700; font-size:1.25rem;}
   nav ul{ display:flex; gap:1.5em; margin:0; padding:0; list-style:none;}
-  nav ul li a{ text-decoration:none; font-weight:500; color:#333;}
+  nav ul li a{ text-decoration:none; font-weight:600; color:#333;}
   nav ul li a:hover{ color:var(--pink);}
   .hamburger{ display:none; flex-direction:column; cursor:pointer;}
-  .hamburger span{ width:25px; height:3px; background:#333; margin:4px 0;}
+  .hamburger span{ width:25px; height:3px; background:#333; margin:4px 0; border-radius:4px;}
 
   .container{ max-width:1200px; margin:2rem auto; padding:0 1rem;}
 
@@ -49,7 +53,7 @@
     overflow:hidden;
     transition:transform .25s ease, box-shadow .25s ease;
     cursor:pointer;
-    aspect-ratio:1/1; /* full tile coverage */
+    aspect-ratio:1/1; /* full tile coverage (square) */
   }
   .project:hover{ transform:translateY(-6px); box-shadow:0 8px 20px rgba(0,0,0,.08); }
 
@@ -65,17 +69,17 @@
 
   /* Hover overlay with title + tagline */
   .hover-info{
-    position:absolute; inset:auto 0 0 0;
-    padding:.75rem 1rem;
-    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 60%);
+    position:absolute; left:0; right:0; bottom:0;
+    padding:.8rem 1rem;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.6) 60%);
     color:#fff;
-    display:flex; flex-direction:column; gap:.2rem;
+    display:flex; flex-direction:column; gap:.25rem;
     transform:translateY(100%);
-    transition:transform .2s ease;
+    transition:transform .18s ease-out;
     pointer-events:none;
   }
   .hover-title{ font-weight:700; font-size:1rem; line-height:1.2; }
-  .hover-tag{ font-size:.9rem; opacity:.95; }
+  .hover-tag{ font-size:.9rem; opacity:.95; font-weight:600; }
   .project:hover .hover-info{ transform:translateY(0); }
 
   /* Play overlay for video card (kept as-is) */
@@ -98,14 +102,14 @@
   .project:hover .play-badge{ background:linear-gradient(transparent, rgba(0,0,0,.12)); }
   .project:hover .play-badge .icon{ transform:scale(1.06); }
 
-  /* Socials / Footer (unchanged) */
+  /* Socials / Footer (colors unchanged) */
   .socials{ text-align:center; margin:3rem 0 1rem;}
-  .socials a{ display:inline-block; padding:10px 20px; margin:5px; border-radius:20px; text-decoration:none; font-weight:bold; color:#fff;}
+  .socials a{ display:inline-block; padding:10px 20px; margin:5px; border-radius:20px; text-decoration:none; font-weight:700; color:#fff;}
   .wix{ background-color:#ff8fb1;} .linkedin{ background-color:#7ea5ff;} .instagram{ background-color:#ffb3c6;}
   .socials a:hover{ opacity:.9;}
   footer{ text-align:center; padding:2rem; font-size:.9rem; color:#666;}
 
-  /* Modal (unchanged functionality) */
+  /* Modal */
   .modal{ display:none; position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,.7); padding:2rem; overflow-y:auto;}
   .modal-content{ background:#fff; max-width:900px; margin:auto; padding:1.25rem 1.25rem 1.75rem; border-radius:12px; position:relative; animation:slideIn .25s ease-out;}
   @keyframes slideIn{ from{ transform:translateY(40px); opacity:0;} to{ transform:translateY(0); opacity:1;} }
@@ -308,7 +312,7 @@ The project is still developing, but it has already pushed me to think about how
   <footer><p>©2025 Ally Brubaker</p></footer>
 </div>
 
-<!-- ===== Modals (unchanged; show full image/video + your text) ===== -->
+<!-- ===== Modals (png images + your long descriptions) ===== -->
 <div class="modal" id="modal1" aria-modal="true" role="dialog">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal('modal1')" aria-label="Close">&times;</span>
@@ -320,7 +324,7 @@ The project is still developing, but it has already pushed me to think about how
       allowfullscreen
     ></iframe>
     <h2>Printed Couture: 3D Printed Dress</h2>
-    <p><!-- Full personal description here --></p>
+    <p><!-- (Optional) Add a longer video description here --></p>
   </div>
 </div>
 
@@ -329,7 +333,7 @@ The project is still developing, but it has already pushed me to think about how
     <span class="close-btn" onclick="closeModal('modal2')" aria-label="Close">&times;</span>
     <img src="graphic.png" alt="Adobe Illustrator clothing graphics">
     <h2>Adobe Illustrator — Apparel</h2>
-    <p><!-- Full personal description here --></p>
+    <p>This project focuses on a piece I designed in Adobe Illustrator. These designs are all built from scratch using the pen tool, custom gradients, and hand-colored swatches. I focused on layering each element intentionally to bring depth, dimension, and a more lifelike quality to otherwise flat vector forms. One of the standout pieces from this series is a custom floral pattern I designed entirely in Illustrator. After experimenting with swatches and redrawing each flower and connecting line digitally, I printed the pattern onto a hoodie to turn the illustration into wearable art. Overall, this project pushed me to refine my digital art techniques while also exploring how my designs could live beyond the screen.</p>
   </div>
 </div>
 
@@ -338,61 +342,61 @@ The project is still developing, but it has already pushed me to think about how
     <span class="close-btn" onclick="closeModal('modal3')" aria-label="Close">&times;</span>
     <img src="ribbonhang.png" alt="Hanging ribbon installation">
     <h2>Hanging Installation</h2>
-    <p><!-- Full personal description here --></p>
+    <p>This project is a hanging installation I designed and built for my home using circular metal rings and individually tied ribbon. Each piece was assembled by hand, layering ribbon around the ring and then suspending the structure from the ceiling using string. One of the biggest challenges was achieving balance, both physically and visually. This installation reflects my interest in texture, symmetry, and spatial design.</p>
   </div>
 </div>
 
 <div class="modal" id="modal4" aria-modal="true" role="dialog">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal('modal4')" aria-label="Close">&times;</span>
-    <img src="doily-skirt.jpg" alt="Doily skirt">
+    <img src="doilyskirt.png" alt="Doily skirt">
     <h2>Doily Skirt</h2>
-    <p><!-- Full personal description here --></p>
+    <p>For this project, I sewed together a collection of vintage doilies to create a wearable piece that works as a belt or beach cover-up. I braided yarn to attach the piece, giving it a cohesive, handmade feel while showcasing the delicate patterns of the fabric. Doilies, once symbols of domestic skill and class in the 17th-century Victorian era, are often overlooked today despite their intricate craftsmanship. I wanted to give these forgotten objects new life through fashion, moving them from simple decoration into something wearable. This experiment inspired me to consider expanding the idea into a full doily set, as I continue exploring the history and artistry behind this craft.</p>
   </div>
 </div>
 
 <div class="modal" id="modal5" aria-modal="true" role="dialog">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal('modal5')" aria-label="Close">&times;</span>
-    <img src="roxy-coaster.jpg" alt="Laser-cut Roxy coaster design">
+    <img src="RoxyCoasty.png" alt="Laser-cut Roxy coaster design">
     <h2>Laser-Cut Roxy Coaster</h2>
-    <p><!-- Full personal description here --></p>
+    <p>For this project, I combined coding and digital fabrication to create a custom Roxy logo coaster. I first used Processing to generate the initial layout and dot pattern, then imported the design into Adobe Illustrator to refine the vector elements for precision. Once finalized, I prepared the file for laser cutting using both cutting and engraving techniques to bring the design to life on a physical material. This project was a hands-on exploration of how code-based design can translate into tactile, functional objects. It reflects the intersection of branding, form, and fabrication, and was a great way to merge aesthetic choices with technical workflow.</p>
   </div>
 </div>
 
 <div class="modal" id="modal6" aria-modal="true" role="dialog">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal('modal6')" aria-label="Close">&times;</span>
-    <img src="tea-organizer.jpg" alt="Tea bag organizer designed in Fusion 360 and laser cut">
+    <img src="teaorgPORT.png" alt="Tea bag organizer designed in Fusion 360 and laser cut">
     <h2>Tea Bag Organizer</h2>
-    <p><!-- Full personal description here --></p>
+    <p>For this project, I designed and fabricated a press-fit tea bag organizer to solve a real problem in my tiny kitchen. I started by sketching and measuring my tea bags, then created a parameterized model in Fusion 360. After preparing the file in Illustrator, I laser cut the pieces, which required some troubleshooting and adjustments when a few joints didn’t fit properly. With some sanding and refinements, I was able to assemble the organizer and learned a lot about precision and constraints along the way. The finished piece now hangs by my microwave and keeps my tea collection neat and accessible, with ideas for future engraving or decoration.</p>
   </div>
 </div>
 
 <div class="modal" id="modal7" aria-modal="true" role="dialog">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal('modal7')" aria-label="Close">&times;</span>
-    <img src="doily-set-wip.jpg" alt="Doily set work in progress">
+    <img src="doilyset.png" alt="Doily set work in progress">
     <h2>Doily Set (Work in Progress)</h2>
-    <p><!-- Full personal description here --></p>
+    <p>Inspired by my earlier doily skirt, I wanted to expand the idea into a full set while focusing more on the cultural significance of doilies. For centuries, these intricate handmade pieces represented domestic skill and artistry, yet they are often overlooked in the present. Through this project, my goal is to give credit to the past while reintroducing doilies into modern fashion. By blending their historical symbolism with contemporary design, I hope to highlight their beauty and bring this craft into a new context. This work-in-progress is both a fashion experiment and a way of honoring the artistry behind a forgotten practice.</p>
   </div>
 </div>
 
 <div class="modal" id="modal8" aria-modal="true" role="dialog">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal('modal8')" aria-label="Close">&times;</span>
-    <img src="denim-laser-wip.jpg" alt="Laser cutting with denim and clothing material WIP">
+    <img src="cutdenim-ex.png" alt="Laser cutting with denim and clothing material WIP">
     <h2>Laser Cutting with Denim (Work in Progress)</h2>
-    <p><!-- Full personal description here --></p>
+    <p>For this work-in-progress, I wanted to experiment with laser cutting on clothing materials like denim by reworking a pair of jeans. My process involves creating and designing a pattern, laser cutting it directly into the fabric, and then sewing the altered pieces together. This project is inspired by Iris van Herpen’s laser-cut couture line, which combines fashion with digital design and fabrication. By applying similar techniques to everyday materials like denim, I am exploring how digital fabrication can transform ordinary garments into unique, statement-making pieces. The project is still developing, but it has already pushed me to think about how technology and fashion can intersect in accessible ways.</p>
   </div>
 </div>
 
 <div class="modal" id="modal9" aria-modal="true" role="dialog">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal('modal9')" aria-label="Close">&times;</span>
-    <img src="haleakala-poster.jpg" alt="Mount Haleakalā national-park-style poster illustration">
+    <img src="mount.h.png" alt="Mount Haleakalā national-park-style poster illustration">
     <h2>Mount Haleakalā — Illustrator Poster</h2>
-    <p><!-- Full personal description here --></p>
+    <p>This project features a poster I created in Adobe Illustrator, all built from scratch using the pen tool, custom gradients, and hand-colored swatches. I focused on layering each element intentionally to bring depth, dimension, and a more lifelike quality to otherwise flat vector forms. The piece began as a blank canvas, and I let shape, color, and careful composition guide the design process. The image in this series took me nearly a full month to complete due to the incredibly detailed process of editing and manually filling in hundreds of small, intricate spaces. I was inspired by a picture I took and used that as inspiration to try to create a national park poster based on the image I took. This project especially taught me the value of patience and how digital tools can be used in a painterly, expressive way.</p>
   </div>
 </div>
 
