@@ -1,109 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hi!!⭐</title>
+
+  <!-- Match portfolio page font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      color: #333;
-      background: repeating-linear-gradient(
+    :root{
+      --pink:#ff6f91;
+      --bgstripe1:#ffffff;
+      --bgstripe2:#ffe6f0;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:"Poppins", Arial, Helvetica, sans-serif;
+      color:#333;
+      background:repeating-linear-gradient(
         90deg,
-        #ffffff,
-        #ffffff 20px,
-        #ffe6f0 20px,
-        #ffe6f0 40px
+        var(--bgstripe1),
+        var(--bgstripe1) 20px,
+        var(--bgstripe2) 20px,
+        var(--bgstripe2) 40px
       );
     }
 
-    header {
-      position: sticky; top: 0; background: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05); z-index: 1000;
+    /* --- MATCHED HEADER / NAV FROM PORTFOLIO --- */
+    header{ position:sticky; top:0; background:#fff; box-shadow:0 2px 5px rgba(0,0,0,.05); z-index:1000; }
+    nav{ display:flex; justify-content:space-between; align-items:center; padding:.75em 1.5em; }
+    .logo{ font-weight:700; font-size:1.25rem; }
+
+    /* Desktop nav */
+    .nav-links{
+      display:flex; gap:1.25rem; align-items:center; margin:0; padding:0; list-style:none;
+    }
+    .nav-links > li{ position:relative; }
+    .nav-links a{
+      text-decoration:none; font-weight:600; color:#333; display:inline-block; padding:.4rem .2rem;
+    }
+    .nav-links a:hover{ color:var(--pink); }
+
+    /* Dropdown (Projects) */
+    .dropdown-toggle{ display:flex; align-items:center; gap:.35rem; cursor:pointer; }
+    .caret{ border: solid currentColor; border-width: 0 2px 2px 0; display:inline-block; padding:3px; transform:rotate(45deg); margin-top:-2px; }
+    .dropdown{
+      position:absolute; top:100%; left:0;
+      background:#fff; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,.08);
+      padding:.5rem 0; list-style:none; width:250px; display:none;
+    }
+    .dropdown li a{ padding:.5rem .9rem; width:100%; }
+    .dropdown li a:hover{ background:#ffe6f0; color:#333; }
+
+    /* Show dropdown on desktop hover or focus */
+    @media (min-width:769px){
+      .nav-links > li:hover .dropdown,
+      .nav-links > li:focus-within .dropdown{ display:block; }
     }
 
-    nav {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0.75em 1.5em;
-    }
-    nav .logo { font-weight: bold; font-size: 1.2rem; }
-    nav ul {
-      display: flex; gap: 1.5em; margin: 0; padding: 0; list-style: none;
-    }
-    nav ul li a {
-      text-decoration: none; font-weight: 500; color: #333;
-    }
-    nav ul li a:hover { color: #ff6f91; }
+    /* Hamburger (mobile) */
+    .hamburger{ display:none; flex-direction:column; cursor:pointer; }
+    .hamburger span{ width:25px; height:3px; background:#333; margin:4px 0; border-radius:4px; }
 
-    .hamburger { display: none; flex-direction: column; cursor: pointer; }
-    .hamburger span {
-      width: 25px; height: 3px; background: #333; margin: 4px 0;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      text-align: center;
-    }
-
-    main h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    main h2 { font-weight: 400; font-size: 1.2rem; color: #555; margin-bottom: 1.5rem; }
-
-    main img {
-      width: 50%; height: auto; border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin-bottom: 1.5rem;
-    }
-
-    main p {
-      line-height: 1.6;
-      text-align: left;
-      margin-bottom: 1.5rem;
-    }
-
-    main a {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 10px 20px;
-      background: #ffccd5;
-      color: #333;
-      font-weight: bold;
-      border-radius: 20px;
-      text-decoration: none;
-    }
-    main a:hover { opacity: 0.85; }
-
-    /* Sketch container */
-    .sketch-container {
-      display: flex;
-      justify-content: center;
-      margin: 3rem auto;   /* pushes it lower */
-      max-width: 500px;    /* keeps it smaller */
-    }
-
-    canvas {
-      max-width: 100%;     /* makes canvas responsive */
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    footer {
-      text-align: center; padding: 2rem; font-size: 0.9rem; color: #666;
-    }
-
-    @media (max-width: 768px) {
-      nav ul {
-        display: none; flex-direction: column; background: #fff;
-        position: absolute; top: 60px; right: 0; width: 200px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 1rem;
+    @media (max-width:768px){
+      .hamburger{ display:flex; }
+      .nav-links{
+        position:absolute; top:60px; right:0; left:0;
+        background:#fff; flex-direction:column; gap:0; display:none;
+        box-shadow:0 8px 20px rgba(0,0,0,.08); border-radius:0 0 12px 12px;
+        overflow:hidden;
       }
-      nav ul.active { display: flex; }
-      .hamburger { display: flex; }
-      main img { width: 80%; }
+      .nav-links.active{ display:flex; }
+      .nav-links > li{ width:100%; }
+      .nav-links > li > a, .dropdown-toggle{ width:100%; padding:1rem 1.1rem; }
+      .dropdown{ position:static; width:100%; display:none; box-shadow:none; border-radius:0; }
+      .dropdown.show{ display:block; }
     }
+
+    /* --- PAGE CONTENT (your original styles, lightly adjusted to use Poppins) --- */
+    main{ max-width:900px; margin:2rem auto; padding:0 1rem; text-align:center; }
+    main h1{ font-size:2.5rem; margin-bottom:.5rem; }
+    main h2{ font-weight:400; font-size:1.2rem; color:#555; margin-bottom:1.5rem; }
+
+    main img{
+      width:50%; height:auto; border-radius:12px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom:1.5rem;
+    }
+    @media (max-width:768px){ main img{ width:80%; } }
+
+    main p{ line-height:1.6; text-align:left; margin-bottom:1.5rem; }
+    main a.button{
+      display:inline-block; margin-top:1rem; padding:10px 20px;
+      background:#ffccd5; color:#333; font-weight:700; border-radius:20px; text-decoration:none;
+    }
+    main a.button:hover{ opacity:.85; }
+
+    .sketch-container{
+      display:flex; justify-content:center; margin:3rem auto; max-width:500px;
+    }
+    canvas{
+      max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    footer{ text-align:center; padding:2rem; font-size:.9rem; color:#666; }
   </style>
 </head>
 <body>
@@ -111,13 +113,34 @@
 <header>
   <nav>
     <div class="logo">Ally⭐</div>
-    <ul id="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
+
+    <!-- MATCHED NAV -->
+    <ul id="nav-links" class="nav-links">
+      <li><a href="index.html" target="_self">Home</a></li>
+
+      <!-- Projects dropdown linking to the portfolio anchors -->
+      <li>
+        <a href="portfolio.html#projects" class="dropdown-toggle" id="projects-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+          Projects <i class="caret"></i>
+        </a>
+        <ul class="dropdown" aria-label="Projects submenu">
+          <li><a href="portfolio.html#p1">3D Printed Dress</a></li>
+          <li><a href="portfolio.html#p2">Adobe Illustrator — Apparel</a></li>
+          <li><a href="portfolio.html#p3">Hanging Installation</a></li>
+          <li><a href="portfolio.html#p4">Doily Skirt</a></li>
+          <li><a href="portfolio.html#p5">Laser-Cut Roxy Coaster</a></li>
+          <li><a href="portfolio.html#p6">Tea Bag Organizer</a></li>
+          <li><a href="portfolio.html#p7">Doily Set (WIP)</a></li>
+          <li><a href="portfolio.html#p8">Laser + Denim (WIP)</a></li>
+          <li><a href="portfolio.html#p9">Haleakalā Poster</a></li>
+        </ul>
+      </li>
+
+      <li><a href="portfolio.html#connect">Connect</a></li>
     </ul>
-    <div class="hamburger" onclick="toggleMenu()">
+
+    <!-- Hamburger -->
+    <div class="hamburger" id="hamburger" aria-label="Toggle navigation" role="button" tabindex="0">
       <span></span><span></span><span></span>
     </div>
   </nav>
@@ -140,14 +163,14 @@
     Fashion is a recurring language in her work, serving as both a personal outlet for self-expression and a lens for exploring broader cultural ideas about identity and beauty. Through her projects, Allison invites audiences to experience the tactile and the technological as complementary forces, revealing new possibilities for how we inhabit and interact with the designed world.
   </p>
 
-  <a href="portfolio.html">View My Portfolio</a>
+  <a class="button" href="portfolio.html">View My Portfolio</a>
 
   <!-- Sketch goes here -->
   <div class="sketch-container">
     <!-- p5.js will inject the canvas here -->
   </div>
 </main>
-  
+
 <script src="https://cdn.jsdelivr.net/npm/p5@1.11.1/lib/p5.min.js"></script>
 <script src="sketch.js"></script>
 
@@ -155,10 +178,46 @@
   <p>©2025 Ally Brubaker</p>
 </footer>
 
+<!-- MATCHED NAV JS FROM PORTFOLIO -->
 <script>
-  function toggleMenu() {
-    document.getElementById("nav-links").classList.toggle("active");
-  }
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  const projectsToggle = document.getElementById('projects-toggle');
+  const dropdown = projectsToggle?.nextElementSibling;
+
+  // Hamburger toggle
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  // Mobile: toggle Projects submenu on tap/click
+  projectsToggle.addEventListener('click', (e) => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile) {
+      e.preventDefault();
+      dropdown.classList.toggle('show');
+      const expanded = projectsToggle.getAttribute('aria-expanded') === 'true';
+      projectsToggle.setAttribute('aria-expanded', String(!expanded));
+    }
+  });
+
+  // Desktop: click-to-open toggle (keeps menu open until clicking elsewhere)
+  projectsToggle.addEventListener('click', (e) => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (!isMobile) {
+      e.preventDefault();
+      dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+
+      const closeOnOutsideClick = (evt) => {
+        const li = projectsToggle.closest('li');
+        if (!li.contains(evt.target)) {
+          dropdown.style.display = 'none';
+          document.removeEventListener('click', closeOnOutsideClick);
+        }
+      };
+      setTimeout(()=>document.addEventListener('click', closeOnOutsideClick), 0);
+    }
+  });
 </script>
 
 </body>
